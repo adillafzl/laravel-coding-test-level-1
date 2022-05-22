@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\v1\web\EventController;
+use App\Http\Controllers\v1\web\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::resource('home', HomeController::class);
+Route::resource('events', EventController::class);
