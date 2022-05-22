@@ -15,11 +15,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         .active {
-    color: #ffffff;
-    }
-    .active:before {
-        transform: translateX(0);
-    }
+            color: #ffffff;
+        }
+
+        .active:before {
+            transform: translateX(0);
+        }
     </style>
 </head>
 

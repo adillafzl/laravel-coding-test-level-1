@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\v1\web\EventController;
 use App\Http\Controllers\v1\web\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-Route::resource('home', HomeController::class);
-Route::resource('events', EventController::class);
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    // Route::resource('home', HomeController::class);
+    Route::resource('events', EventController::class);
+    Route::get('logout', function () {
+        auth()->guard('web')->logout();
+        return redirect('/');
+    });
+});
