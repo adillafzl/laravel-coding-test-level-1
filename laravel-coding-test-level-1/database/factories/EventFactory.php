@@ -14,7 +14,7 @@ class EventFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->sentence();
+        $name = $this->faker->sentence(2);
         $slug = Str::slug($name, '-');
 
         return [
