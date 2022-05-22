@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Event;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class EventRepository
@@ -32,6 +33,13 @@ class EventRepository
             'endAt' => $request->endAt,
         ]);
 
+        $details = [
+            'title' => $request->name,
+            'body' => "Start At : " . $request->startAt . "End At : " . $request->endAt
+        ];
+       
+        Mail::to('your_receiver_email@gmail.com')->send(new \App\Mail\EventCreatedMail($details));
+       
         return $event;
     }
 
